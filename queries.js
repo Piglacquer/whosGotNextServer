@@ -10,9 +10,9 @@ module.exports = {
 			.returning('*')
 			.then(record => record[0])
 	},
-	removePlayer(name) {
+	removePlayer(id) {
 		return database('players')
-			.where('name', name)
+			.where('id', id)
 			.del()
 	}
 }

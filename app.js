@@ -2,14 +2,15 @@ const express = require('express')
 const app = express()
 const queries = require('./queries')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 app.use(bodyParser.json())
-app.use(function(req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*')
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-	res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE')
-	next()
-})
+// app.use(function(req, res, next) {
+// 	res.header('Access-Control-Allow-Origin', '*')
+// 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+// 	res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE')
+// 	next()
+// })
 
 app.get('/', (request, response) => {
 	queries
@@ -29,11 +30,11 @@ app.post('/', (request, response) => {
 		.catch(console.error)
 })
 
-app.delete('/:name', (request, response) => {
+app.delete('/:id', (request, response) => {
 	queries
-		.removePlayer(request.params.name)
+		.removePlayer(request.params.id)
 		.then(() => {
-			response.sendStatus(204)
+			response.sendStatus(200)
 		})
 		.catch(console.error)
 })
