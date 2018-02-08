@@ -28,7 +28,6 @@ app.post('/', (request, response) => {
 app.delete('/:id', (request, response) => {
 	queries
 		.removePlayer(request.params.id)
-		.then(response => response.json())
 		.then(() => {
 			response.sendStatus(200)
 		})
